@@ -2,8 +2,10 @@ const Post = require('../models/Post');
 
 class Pages {
     async getAll(req, res) {
-        const data = await Post.find({});
-        res.render('index', { data })
+        let page = req.query.page || 1
+        let total = await Post.find({}).countDocuments();
+        const data = await Post.find({}).sort('-date').skip((page - 1) * 3).limit(3);
+        res.render('index', { data, page, total })
     }
 
     servePage(req, res) {

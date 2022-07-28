@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose');
-const methodover = require('express-method-override');
+const methodover = require('method-override');
 const fs = require('fs');
 
 const pageCont = require('./controllers/pageCont')
@@ -8,22 +8,20 @@ const postCont = require('./controllers/postCont')
 
 const app = express();
 
-const Post = require('./models/Post');
-
 const host = 'localhost';
-const port = process.argv[2] || 5000;
+const port = process.env.PORT || 5000;
 
+app.use(methodover('_method'));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(methodover('_method'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 (function baslangic() {
     if (!fs.existsSync('public/uploads'))
         fs.mkdirSync('public/uploads')
 
-    mongoose.connect('mongodb://127.0.0.1:27017/cleanblog-test-db', { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+    mongoose.connect('mongodb+srv://arif:123@cluster0.ibztmat.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }, err => {
         if (err) throw err
         console.log('veri tabanına bağlantı başarılı');
     })

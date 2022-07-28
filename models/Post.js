@@ -7,6 +7,7 @@ const  PostSchema = new Schema({
         type: String,
         required: true
     },
+    subtitle: String,
     content: {
         type: String,
         required: true

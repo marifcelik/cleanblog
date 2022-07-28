@@ -26,12 +26,12 @@
       <div class="col-lg-8 col-md-10 mx-auto">
         <% for (post of data) { %>
           <div class="post-preview">
-            <a href="/posts/<%= post._id %>">
+            <a href="/post/<%= post._id %>">
               <h2 class="post-title">
                 <%= post.title %> 
               </h2>
               <h3 class="post-subtitle">
-                <%= post.content %> 
+                <%= post.subtitle %> 
               </h3>
             </a>
             <p class="post-meta">Posted by

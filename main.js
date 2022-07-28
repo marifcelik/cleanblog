@@ -8,7 +8,7 @@ const postCont = require('./controllers/postCont')
 
 const app = express();
 
-const host = 'localhost';
+const host = '0.0.0.0';
 const port = process.env.PORT || 5000;
 
 app.use(methodover('_method'));
